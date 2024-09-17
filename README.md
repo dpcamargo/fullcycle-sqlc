@@ -24,3 +24,9 @@ sql:
 ```
 
 7 - Generate code ```sqlc generate````
+
+8 - For float64 data include ```          - db_type: "decimal"
+            go_type: "float64"``` to sqlc.yaml or else decimal will be received as string
+
+9 - For transactions create a callTx function that receives an anonymous function that calls all transactions, and rollbacks on error or commits on pass.
+

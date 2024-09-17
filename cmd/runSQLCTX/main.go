@@ -19,7 +19,7 @@ type CourseParams struct {
 	ID          string
 	Name        string
 	Description sql.NullString
-	Price       string
+	Price       float64
 }
 
 type CategoryParams struct {
@@ -63,7 +63,7 @@ func (c *CourseDB) CreateCourseAndCategory(ctx context.Context, argsCategory Cat
 			return err
 		}
 
-		err = q.CreateCourses(ctx, db.CreateCourseParams{
+		err = q.CreateCourse(ctx, db.CreateCourseParams{
 			ID:          argsCourse.ID,
 			Name:        argsCourse.Name,
 			Description: argsCourse.Description,
@@ -95,7 +95,7 @@ func main() {
 		ID:          uuid.New().String(),
 		Name:        "Backend",
 		Description: sql.NullString{String: "Curso Backend", Valid: true},
-		Price:       "100.00",
+		Price:       100.00,
 	}
 
 	categoryArgs := CategoryParams{
